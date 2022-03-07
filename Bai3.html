@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script>
+            fetch("https://randomuser.me/api/?results=5")
+                .then(response => response.json())
+                .then(character => showCharacters(character.results));
+                showCharacters = characters => {
+                const user = document.querySelector("#random");
+                characters.forEach(character => {
+                    const Name = document.createElement("li");
+                    Name.innerText = `Họ tên: ${character.name.title} ${character.name.first} ${character.name.last}`;
+                    const Email = document.createElement("li");
+                    Email.innerText = `Email: ${character.email}`;
+                    const Birth = document.createElement("li");
+                    Birth.innerText = `Ngày sinh: ${character.dob.date}`;
+                    const Address = document.createElement("li");
+                    Address.innerText = `Địa chỉ: ${character.location.street.name}, ${character.location.city}, ${character.location.state}, ${character.location.country}`;
+                    const Phone = document.createElement("li");
+                    Phone.innerText = `Số điện thoại: ${character.phone}`;
+                    user.append(Name,Email,Birth,Address,Phone);
+                });
+            }
+            </script>
+    </head>
+    <body>
+        <h3>User</h3>
+        <ul id="random"></ul>
+    </body>
+</html>
